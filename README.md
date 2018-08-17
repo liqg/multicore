@@ -44,7 +44,8 @@ tar xf R-3.3.2.tar.gz & cd xf R-3.3.2
 
 ```
 * Comple R source code
-``./configure && make``
+``
+./configure && make``
 * Copy to R library
 ``sudo cp -r parallel /usr/lib/R/library``
 
