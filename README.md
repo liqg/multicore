@@ -1,6 +1,6 @@
 # multicore
 
-```text
+```
 > Sys.getpid()
 [1] 1505
 > parallel::m
@@ -19,17 +19,13 @@ attr(,"class")
 > multicore::mcparallel(Sys.sleep(100))                                                                                                                                                                             
  parallelJob: processID=2830
 
-
-liqg@cycad:~/soft/R/R-3.3.2/library$ ps aux |grep liqg |grep  R                                                                                                                                                     
+liqg@cycad:~/soft/R/R-3.3.2/library$ ps aux |grep liqg |grep  R                                                                 
 liqg      1505  1.2  0.0 2232836 38304 pts/13  S+   18:26   0:06 /usr/lib/R/bin/exec/R
 liqg      2758  0.0  0.0 2230104 32272 pts/13  S+   18:34   0:00 /usr/lib/R/bin/exec/R
 liqg      2830  0.0  0.0 2232836 32568 pts/13  S+   18:35   0:00 /usr/lib/R/bin/exec/R
 
 liqg@cycad:~/soft/R/R-3.3.2/library$ kill -9 1505
-
 liqg@cycad:~/soft/R/R-3.3.2/library$ ps aux |grep liqg |grep  R
-
 liqg      2758  0.0  0.0 2230104 32272 pts/13  S    18:34   0:00 /usr/lib/R/bin/exec/R
-
 ```
 
