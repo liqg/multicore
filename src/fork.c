@@ -15,6 +15,7 @@
 /* --- plain unix parte --- */
 #include <sys/select.h>
 #include <sys/wait.h>
+#include <sys/prctl.h>
 #else
 /* --- work arounds for Windows --- */
 #include <windows.h>
@@ -226,6 +227,9 @@ SEXP mc_fork() {
 		child_can_exit = 0;
 #ifndef WIN32
 		signal(SIGUSR1, child_sig_handler);
+		int r_prctl = prctl(PR_SET_PDEATHSIG, SIGTERM);
+		if (r_prctl == -1) { perror(0); exit(1); }
+		
 #endif
 #if HAVE_AQUA
 		/* Quartz runs the event loop so we need to stop it if we can */
