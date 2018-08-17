@@ -29,3 +29,22 @@ liqg@cycad:~/soft/R/R-3.3.2/library$ ps aux |grep liqg |grep  R
 liqg      2758  0.0  0.0 2230104 32272 pts/13  S    18:34   0:00 /usr/lib/R/bin/exec/R
 ```
 
+## Hack R package: parallel 
+* download source code of R (R-3.3.2) , decompress and change dir
+```
+tar xf R-3.3.2.tar.gz & cd xf R-3.3.2
+```
+* change src/library/parallel/src/fork.c by adding a head file and set `prctl(PR_SET_PDEATHSIG, SIGTERM)`:
+```
+#include <sys/prctl.h>
+
+    if (pid == 0) { /* child */ # line 275 of origin file
+        int r_prctl = prctl(PR_SET_PDEATHSIG, SIGTERM); // adding line 
+        if (r_prctl == -1) { perror(0); exit(1); } // adding line 
+
+```
+* Comple R source code
+``./configure && make``
+* Copy to R library
+``sudo cp -r parallel /usr/lib/R/library``
+
